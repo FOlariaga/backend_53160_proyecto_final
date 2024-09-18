@@ -16,7 +16,7 @@ dotenv.config({ path: clOptions.mode === 'devel' ? '.env.devel' : '.env.prod' })
 const config = {
     APP_NAME: 'coder_53160',
     SERVER: "atlas",
-    PORT: process.env.PORT || clOptions.port || 5050,
+    PORT: process.env.PORT || clOptions.port || 8080,
     DIRNAME: url.fileURLToPath(new URL('.', import.meta.url)),
     // get UPLOAD_DIR() { return `${this.DIRNAME}/public/img` },
     get UPLOAD_DIR() { return `${this.DIRNAME}/uploads` },
