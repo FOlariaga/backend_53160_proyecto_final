@@ -1,0 +1,45 @@
+<style>
+    body {
+        background-color: #333;
+    }
+
+    .login-container {
+        max-width: 360px;
+        margin: auto;
+        margin-top: 64px;
+        padding: 32px;
+        border-radius: 0.5em;
+        color: #333;
+        border: 1px solid #bbb;
+        background-color: #ccc;
+    }
+
+    .a2 {
+        color: #333;
+    }
+
+    .a2:hover {
+        color: #000;
+    }
+</style>
+
+
+<div class="login-container">
+    <h1><b>Cambio de contraseña</b></h1>
+
+    <form action="/api/users/restore" method="post" style="margin-top: 32px;">
+        <div class="input-group" style="width: 300px; margin-bottom: 32px;">
+            <span class="input-group-text" id="group1"><i class="fa-solid fa-user"></i></span>
+            <input type="email" name="email" class="form-control" placeholder="Email de recuperacion" required="required" autofocus="autofocus">
+        </div>
+
+        <button type="submit" class="btn btn-success">Solicitar cambio de contraseña</button>
+
+        <div style="margin-top: 24px;">
+            Recordo su contraseña?: <a class="a2" href="/login">inicia sesion</a>
+        </div>
+        <div style="margin-top: 24px;">
+            Aun no tenés cuenta?: <a class="a2" href="/register">Registrate</a>
+        </div>
+    </form>
+</div>

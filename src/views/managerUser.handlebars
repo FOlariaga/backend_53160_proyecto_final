@@ -1,0 +1,56 @@
+<div></div>
+    <div class="navbar">
+        <h1 class="titleProduct">Usuarios</h1>
+        <div class="nav">
+            <div class="profile"><a href="/profile">Perfil</a></div>
+            <div class="cart"><a href="/cart">Carrito</a></div>
+        </div>
+    </div>
+
+    <div class="carts">
+        <div class="cartProduct">
+            <h3>ID: {{user._id}}</h3>
+            <p>
+                {{user.firstName}} {{user.lastName}} <br>
+                email: {{user.email}} <br>
+                edad: {{user.age}} <br>
+                role: {{user.role}}
+            </p>
+                <button class="buttonPages" id="deleteUser" value={{user._id}}>eliminar ususario</button>
+                <button class="buttonPages" id="updateRole" value="{{user._id}}">cambiar rol del Usuario</button>
+
+        </div>
+    </div>
+</div>
+
+<script type="module">
+
+    const buttonDelete = document.getElementById("deleteUser")
+    const buttonUpdate = document.getElementById("updateRole")
+
+    buttonDelete.addEventListener("click", () => {
+        console.log("entro a borrar")
+
+        return fetch(`http://localhost:8080/api/users/${buttonDelete.value}`, { method: "DELETE" })
+        .then(response => { if (!response.ok) { 
+            thrownewError(`Error al eliminar el usuario: ${response.statusText}`); 
+            } 
+            return response.json(); })
+        .then(data => { console.log(`user delete:`, data)});
+    })
+
+    buttonUpdate.addEventListener("click", () => {
+        console.log("entro a update")
+
+        return fetch(`http://localhost:8080/api/users/premium/${buttonUpdate.value}`, { method: "GET" })
+        .then(response => { if (!response.ok) { 
+            console.log("fallo")
+            thrownewError(`Error al modificar el usuario: ${response.statusText}`); 
+            } 
+            return response.json(); })
+        .then((data) => { console.log(`user update:`, data)})
+        .finally(() => {
+            location.reload()
+        })
+    })
+</script>

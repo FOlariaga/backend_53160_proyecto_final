@@ -1,0 +1,4 @@
+node_modules/
+.env.devel
+.env.prod
+usersManager.test.js

@@ -1,0 +1,38 @@
+.main-div {
+    background-color: #f60;
+    padding: 1em;
+}
+
+.card{
+    background-color: #333333;
+display: flex;
+flex-wrap: wrap; 
+gap: 1rem;
+}
+
+.cardProduct {
+    width: 800px;
+    background-color: rgb(177, 126, 61);
+    padding: 10px;
+}
+.pagesManager{
+    margin: 10px;
+}
+
+.buttonPages{
+    background-color: white;
+    color: rgb(58, 32, 155);
+    padding: 5px 30px;
+    border: black solid 1px;
+    border-radius: 10px;
+}
+
+.navbar{
+    display: flex;
+}
+
+.nav{
+    display: flex;
+    gap: 10px;
+}
+

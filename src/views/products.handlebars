@@ -1,0 +1,67 @@
+<div>
+    <div class="navbar">
+        <h1 class="titleProduct">Productos</h1>
+        <div class="nav">
+            <div class="profile"><a href="/profile">Perfil</a></div>
+            <div class="cart"><a href="/cart">Carrito</a></div>
+        </div>
+    </div>
+    <h2>{{data.category}}</h2>
+
+    <div class="card">
+        {{#each data.docs}}
+        <div class="cardProduct">
+            <h3>{{title}}</h3>
+            <p>
+                {{description}} <br>
+                precio ${{price}}
+            </p>
+            <a href="/product/{{_id}}">
+                <button>Detalle</button>
+            </a>
+            {{!-- <button id="{{_id}}">eliminar</button> --}}
+        </div>
+        {{/each}}
+    </div>
+    <div class="pagesManager">
+        {{#if data.prevPage}}
+        <a class="buttonPages"
+            href="/products?page={{data.prevPage}}&limit={{data.limit}}&query={{data.category}}">Anterior</a>
+        {{/if}}
+
+        |
+
+        {{#if data.nextPage}}
+        <a class="buttonPages"
+            href="/products?page={{data.nextPage}}&limit={{data.limit}}&query={{data.category}}">Siguiente</a>
+        {{/if}}
+    </div>
+</div>
+
+<div>
+    <h2>Agrega productos</h2>
+
+    <form action="/api/products/products" method="post" enctype="multipart/form-data">
+
+        <input type="text" name="title" placeholder="ingrese el nombre del producto" style="width: 300px;"> <br>
+
+        <textarea name="description" placeholder="ingrese una breve descripcion del producto del producto"
+            style="width: 300px;"></textarea> <br>
+
+        <input type="number" name="price" placeholder="ingrese el precio del producto" style="width: 300px;"> <br>
+
+        <input type="number" name="stock" placeholder="ingrese el stock del producto" style="width: 300px;"> <br>
+
+        <input type="text" name="code" placeholder="ingrese el codigo del producto" style="width: 300px;"> <br>
+
+        <input type="text" name="category" placeholder="ingrese la categoria del producto" style="width: 300px;"> <br>
+
+        <input type="file" name="productImages" multiple><br>
+
+        <button type="submit">Enviar</button>
+    </form>
+</div>
+
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"
+    integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO"
+    crossorigin="anonymous"></script>

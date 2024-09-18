@@ -1,0 +1,41 @@
+<div>
+    <div class="navbar">
+        <h1 class="titleProduct">Usuarios</h1>
+        <div class="nav">
+            <div class="profile"><a href="/profile">Perfil</a></div>
+            <div class="cart"><a href="/cart">Carrito</a></div>
+        </div>
+    </div>
+
+    <div class="card">
+         <button class="buttonPages" id="deleteUser">Dar de baja por inactividad</button>
+        {{#each data}}
+        <div class="cardProduct">
+            <h3>ID: {{_id}}</h3>
+            <p>
+                {{firstName}} {{lastName}} <br>
+                email: {{email}} <br>
+                edad: {{age}} <br>
+                role: {{role}}
+            </p>
+            <a href="/managerUser/{{_id}}"><button class="buttonPages">Gestionar ususario</button></a>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+<script type="module">
+
+    const buttonDelete = document.getElementById("deleteUser")
+
+    buttonDelete.addEventListener("click", () => {
+        console.log("va a sacar por inactividad")
+
+        return fetch(`http://localhost:8080/api/users`, { method: "DELETE" })
+        .then(response => { if (!response.ok) { 
+            thrownewError(`Error al eliminar el producto: ${response.statusText}`); 
+            } 
+            return response.json(); })
+        .then(data => { console.log(`user delete:`, data)});
+    })
+</script>

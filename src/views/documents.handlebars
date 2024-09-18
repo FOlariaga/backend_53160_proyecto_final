@@ -1,0 +1,28 @@
+<div>
+    <h2>Agrega documentacion</h2>
+
+    <form action="/api/users/{{user._id}}/documents" method="post" enctype="multipart/form-data">
+        <select name="optionDocument" required="required">
+
+            <option>Identificación</option>
+
+            <option>Comprobante de domicilio</option>
+
+            <option>Comprobante de estado de cuenta</option>
+
+        </select>
+
+        <input type="file" name="documentImages" required="required" ><br>
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    <h2>Agrega foto de perfil</h2>
+
+    <form action="/api/users/{{user._id}}/profiles" method="post" enctype="multipart/form-data">
+
+        <input type="file" name="profileImages" required="required" ><br>
+
+        <button type="submit">Enviar</button>
+    </form>
+</div>

@@ -1,0 +1,176 @@
+openapi: 3.0.1
+info:
+  title: Api backend 53160
+  description: Documentacion de Api backend 53160
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /api/products:
+    get:
+      summary:  Recupera los productos almacenados en la base de datos
+      description: Retrieve a list of all users
+      responses:
+        "200":
+          description:  Lista de productos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  payload:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Products"
+    post:
+      summary: Agregar un producto a la base de datos
+      description: Crea un nuevo producto
+      requestBody:
+        description: Datos del producto a agregar
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/products"
+      responses:
+        "200":
+          description: Producto Aagregado a la base de datos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Producto agregado
+  /api/products/{pid}:
+    get:
+      summary: Recupera un producto por su ID
+      description: Recuperar el producto cuyo ID sea igual al del parametro
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: ID de los productos a recuperar
+          schema:
+            type: string
+      responses:
+        "200":
+          description: producto encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  payload:
+                    $ref: "#/components/schemas/products"
+        "404":
+          description: Producto no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  error:
+                    type: string
+                    example: Producto no encontrado
+    put:
+      summary: Actualizar producto por id
+      description: Actualizar un producto específico por su ID
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: ID del producto a actualizar
+          schema:
+            type: string
+      requestBody:
+        description: Datos del producto para actualizar
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "200":
+          description: Producto Actualizado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Producto actualizado
+        "404":
+          description: Producto no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  error:
+                    type: string
+                    example: Producto no encontrado
+    delete:
+      summary: Eliminar producto por su ID
+      description: Eliminar un producto específico por su ID
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: ID del producto a eliminar
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Producto eliminado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Producto eliminado
+components:
+  schemas:
+    Products:
+      type: object
+      properties:
+      title:
+        type: string
+      description:
+        type: string
+      price:
+        type: number
+      stock:
+        type: number
+      code:
+        type: String
+      category:
+        type: string
+      thumbnail:
+        type: string
+        
