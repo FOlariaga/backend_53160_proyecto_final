@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon src/app --mode=devel",
-    "start": "nodemon src/app --mode=prod"
+    "start": "node src/app --mode=prod"
   },
   "author": "FOlariaga",
   "license": "ISC",
